@@ -4,7 +4,7 @@ include "conn.php";
 
 if(isset($_POST['email'])){
 
-$user_id = $_POST['name'];
+$user_id = $_POST['user_id'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $date = $_POST['date'];
@@ -82,7 +82,7 @@ p{
 <form method="POST">
     
 <label>Name</label>
-<input type="text" name="name" required>
+<input type="text" name="user_id" required>
 
 <label>Email</label>
 <input type="email" name="email" required>

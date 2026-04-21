@@ -9,11 +9,11 @@ $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $date = $_POST['date'];
 
-$sql = "INSERT INTO user (user_id, email, password)
-        VALUES ('$user_id', '$email', '$password', 'date')";
+$sql = "INSERT INTO user (user_id, email, password, created_at)
+        VALUES ('$user_id', '$email', '$password', '$date')";
 
 if(mysqli_query($conn,$sql)){
-    echo "Registration Successful";
+    header("Location: login.php");
 }else{
     echo "Error: " . mysqli_error($conn);
 }
@@ -25,28 +25,81 @@ if(mysqli_query($conn,$sql)){
 <html>
 <head>
 <title>Register</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:350px;
+    margin:80px auto;
+    background:white;
+    padding:30px;
+    border-radius:8px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#45a049;
+}
+
+p{
+    text-align:center;
+}
+
+</style>
+
 </head>
 <body>
+
+<div class="container">
 
 <h2>User Registration</h2>
 
 <form method="POST">
     
-<label>Name:</label><br>
-<input type="text" name="name" required><br><br>
+<label>Name</label>
+<input type="text" name="name" required>
 
-<label>Email:</label><br>
-<input type="email" name="email" required><br><br>
+<label>Email</label>
+<input type="email" name="email" required>
 
-<label>Password:</label><br>
-<input type="password" name="password" required><br><br>
+<label>Password</label>
+<input type="password" name="password" required>
 
-<label>Created at</label><br>
-<input type="datetime" name="date" required><br><br>
+<label>Created At</label>
+<input type="datetime-local" name="date" required>
 
 <button type="submit">Register</button>
 
+<p>Already have an account? <a href="login.php">Login</a></p>
+
 </form>
+
+</div>
 
 </body>
 </html>
